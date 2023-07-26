@@ -36,6 +36,12 @@ public class Main {
         // choosing first player's pokemon
         System.out.println("Player 1, choose a pokemon! \n 1- Pikachu \n 2- Squirrel \n 2- Balbausar \n 2- Charmender");
         String player1Pokemon = scanner.next().toLowerCase();
+        characterService.choosePokemon(player1, player1Pokemon);
+
+        // choosing second player's pokemon
+        System.out.println("Player 2, choose a pokemon! \n 1- Pikachu \n 2- Squirrel \n 2- Balbausar \n 2- Charmender");
+        String player2Pokemon = scanner.next().toLowerCase();
+        characterService.choosePokemon(player2, player2Pokemon);
 
 
         System.out.println(weatherService.randomWeather());

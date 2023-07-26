@@ -17,18 +17,19 @@ public class PlayerService {
     public Player choosePlayer(String name, String playerCharacter) {
         Player player = new Player();
 
-        if (playerCharacter.equals("ash") ) {
-            player = createPlayer(name, loadService.loadCharacters().get(0));
-        } else if (playerCharacter.equals("broke")) {
-            player = createPlayer(name, loadService.loadCharacters().get(1));
-        } else {
-            System.out.println("ERROR! Character doesn't exist.");
-        }
+            if (playerCharacter.equals("ash")) {
+                player = createPlayer(name, loadService.loadCharacters().get(0));
+
+            } else if (playerCharacter.equals("broke")) {
+                player = createPlayer(name, loadService.loadCharacters().get(1));
+            } else {
+                System.out.println("ERROR! Character doesn't exist.");
+            }
+
         System.out.println(player);
         return player;
+
     }
-
-
 
 
 }

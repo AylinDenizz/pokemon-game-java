@@ -39,6 +39,8 @@ public class Character {
         this.pokemonList = pokemonList;
     }
 
+
+
     @Override
     public String toString() {
         return "Character{" +
