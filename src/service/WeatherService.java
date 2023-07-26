@@ -20,7 +20,7 @@ public class WeatherService {
         return weathers.get(index);
     }
 
-    public void EffectThePowerOfPokemon(Player player, WeatherConditionEnum currentWeather) {
+    public void effectThePowerOfPokemon(Player player, WeatherConditionEnum currentWeather) {
         Pokemon pokemon = player.getCharacter().getPokemonList().get(0);
         if (currentWeather == WeatherConditionEnum.HOT && pokemon.getName() == "Squirrel") {
             pokemon.setDamage((pokemon.getDamage()) * 8 / 10);

@@ -1,4 +1,5 @@
 import model.Player;
+import model.WeatherConditionEnum;
 import service.*;
 
 import javax.xml.transform.Source;
@@ -43,7 +44,15 @@ public class Main {
         String player2Pokemon = scanner.next().toLowerCase();
         characterService.choosePokemon(player2, player2Pokemon);
 
+        // Starting the fight
+        System.out.println("Battle will start know !!!");
+        WeatherConditionEnum currentWeather = weatherService.randomWeather();
+        System.out.println("Know the weather is " + currentWeather);
 
-        System.out.println(weatherService.randomWeather());
+        weatherService.effectThePowerOfPokemon(player1, currentWeather);
+        weatherService.effectThePowerOfPokemon(player2, currentWeather);
+
+
+
     }
 }

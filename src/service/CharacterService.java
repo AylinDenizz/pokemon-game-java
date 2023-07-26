@@ -10,7 +10,6 @@ public class CharacterService {
 
     public void choosePokemon(Player player, String player1Pokemon) {
         ArrayList<Pokemon> pokemonList = loadService.loadPokemons();
-        System.out.println(pokemonList);
         for (Pokemon pokemon : pokemonList) {
             if (pokemon.getName().equals(player1Pokemon.toLowerCase())) {
                 if (player.getCharacter().getPokemonList() != null) {
@@ -21,9 +20,9 @@ public class CharacterService {
                     player.getCharacter().setPokemonList(pokemonListInPlayer);
                 }
             }
-            System.out.println(player.getCharacter().getPokemonList());
         }
         System.out.println(player.getName() + " choosed " + player1Pokemon.toLowerCase());
+        System.out.println(player + " pokemon list has: " +  player.getCharacter().getPokemonList());
     }
 
 }

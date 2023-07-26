@@ -25,10 +25,10 @@ public class LoadService {
         SpecialPower fire = new Fire("Fire", 5, 2);
         SpecialPower earth = new Earth("Earth", 4, 3);
 
-        Pokemon pokemon1 = new Pikachu("Pikachu", 100, 10, TypeEnum.ELECTRICY, electricity);
-        Pokemon pokemon2 = new Sqiurtle("Squirrel", 120, 8, TypeEnum.WATER, water);
-        Pokemon pokemon3 = new Charmander("Charmender", 90, 12, TypeEnum.FIRE, fire);
-        Pokemon pokemon4 = new Balbausar("Balbausar", 140, 7, TypeEnum.EARTH, earth);
+        Pokemon pokemon1 = new Pikachu("pikachu", 100, 10, TypeEnum.ELECTRICY, electricity);
+        Pokemon pokemon2 = new Sqiurtle("squirrel", 120, 8, TypeEnum.WATER, water);
+        Pokemon pokemon3 = new Charmander("charmender", 90, 12, TypeEnum.FIRE, fire);
+        Pokemon pokemon4 = new Balbausar("balbausar", 140, 7, TypeEnum.EARTH, earth);
 
         ArrayList<Pokemon> pokemonList = new ArrayList<>();
         pokemonList.add(pokemon1);
