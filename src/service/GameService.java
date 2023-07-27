@@ -44,6 +44,19 @@ public class GameService {
         defendingPokemon.setHealth(defendingPokemon.getHealth() - damage);
     }
 
+    public void makeAttack( Player attacker, Player defender, int attackMove ) {
+        switch (attackMove) {
+            case 0:
+                attack(attacker, defender ,false, false);
+            case 1:
+                attack(attacker, defender ,true, false);
+            case 2:
+                attack(attacker, defender,false, true);
+            case 3:
+                attack(attacker, defender ,true, true);
+        }
+    }
+
 
 
 }

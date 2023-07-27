@@ -22,20 +22,22 @@ public class WeatherService {
 
     public void effectThePowerOfPokemon(Player player, WeatherConditionEnum currentWeather) {
         Pokemon pokemon = player.getCharacter().getPokemonList().get(0);
-        if (currentWeather == WeatherConditionEnum.HOT && pokemon.getName() == "Squirrel") {
+        if (currentWeather.equals( WeatherConditionEnum.HOT) && pokemon.getName().equals("squirrel")) {
             pokemon.setDamage((pokemon.getDamage()) * 8 / 10);
-            System.out.println("Squirtle loose his power due to evaporation of water");
-        } else if (currentWeather == WeatherConditionEnum.RAİNY && pokemon.getName() == "Pikachu") {
+            System.out.println("Squirtle loose his power due to evaporation of water.New Damage=" + pokemon.getDamage());
+        } else if (currentWeather.equals( WeatherConditionEnum.RAİNY )&& pokemon.getName().equals("pikachu")) {
             pokemon.setDamage((pokemon.getDamage()) * 7 / 10);
-            System.out.println("Pikachu loose his power due to electric current being affected by rain");
-        } else if (currentWeather == WeatherConditionEnum.RAİNY && pokemon.getName() == "Charmender") {
+            System.out.println("Pikachu loose his power due to electric current being affected by rain.New Damage=" + pokemon.getDamage());
+        } else if (currentWeather.equals(WeatherConditionEnum.RAİNY) && pokemon.getName().equals( "charmender") ){
             pokemon.setDamage((pokemon.getDamage()) * 9 / 10);
-            System.out.println("Charmender loose his power due to the fire being extinguished by the rain");
-        } else if (currentWeather == WeatherConditionEnum.WİNDY && pokemon.getName() == "Balbausar") {
+            System.out.println("Charmender loose his power due to the fire being extinguished by the rain. New Damage=" + pokemon.getDamage());
+        } else if (currentWeather.equals( WeatherConditionEnum.WİNDY) && pokemon.getName().equals( "balbausar")) {
             pokemon.setDamage((pokemon.getDamage()) * 6 / 10);
-            System.out.println("Balbausar loose his power due to the leaves blowing in the wind");
+            System.out.println("Balbausar loose his power due to the leaves blowing in the wind.New Damage=" + pokemon.getDamage());
         } else if (currentWeather == WeatherConditionEnum.SUNNY) {
             System.out.println("Weather daily sunshine. All pokemon retained their strength.");
+        } else {
+            System.out.println("wheather is " + currentWeather.name() + pokemon.getName() + " retained his strength.");
         }
     }
 }

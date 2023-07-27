@@ -46,11 +46,52 @@ public class Main {
 
         // Starting the fight
         System.out.println("Battle will start know !!!");
-        WeatherConditionEnum currentWeather = weatherService.randomWeather();
-        System.out.println("Know the weather is " + currentWeather);
+        boolean battleFinish = false;
+        int player1pokemonInitialDamage = player1.getCharacter().getPokemonList().get(0).getDamage();
+        int player2pokemonInitialDamage = player2.getCharacter().getPokemonList().get(0).getDamage();
 
-        weatherService.effectThePowerOfPokemon(player1, currentWeather);
-        weatherService.effectThePowerOfPokemon(player2, currentWeather);
+        while(!battleFinish) {
+            //initial weather setted.
+
+            WeatherConditionEnum currentWeather = weatherService.randomWeather();
+            System.out.println("Now the weather is " + currentWeather);
+            weatherService.effectThePowerOfPokemon(player1, currentWeather);
+            weatherService.effectThePowerOfPokemon(player2, currentWeather);
+
+            // 1. round attack move performed.
+            System.out.println(player1.getName() + "Make your attack move!" + "\n To make regular attack press 0 " +
+                    "\n To make PokeSpecialAttack press 1  " +
+                    "\n To make CharSpecialAttack press 2" + "\n To make both press 3");
+            int firstAttackMove = scanner.nextInt();
+            gameService.makeAttack(player1, player2, firstAttackMove);
+            System.out.println(player2);
+
+            System.out.println(player2.getName() + "Make your attack move!" + "\n To make regular attack press 0 " +
+                    "\n To make PokeSpecialAttack press 1  " +
+                    "\n To make CharSpecialAttack press 2" + "\n To make both press 3");
+            int secondAttackMove = scanner.nextInt();
+            gameService.makeAttack(player2, player1, secondAttackMove);
+            System.out.println(player1);
+
+            // is battle finished. Check the health bars.
+            if (player1.getCharacter().getPokemonList().get(0).getHealth() <= 0) {
+                player1.setWinner(false);
+                player2.setWinner(true);
+                System.out.println(player1.getName() +  " is the winner");
+                battleFinish = true;
+            } else if  (player2.getCharacter().getPokemonList().get(0).getHealth() <= 0){
+                player1.setWinner(true);
+                player2.setWinner(false);
+                System.out.println(player2.getName() +  " is the winner");
+                battleFinish = true;
+            } else {
+                System.out.println(player1.getName() + "health is : " + player1.getCharacter().getPokemonList().get(0).getHealth());
+                System.out.println(player2.getName() + "health is : " + player2.getCharacter().getPokemonList().get(0).getHealth());
+
+                battleFinish = false;
+            }
+
+        }
 
 
 
