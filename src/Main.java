@@ -1,8 +1,11 @@
 import model.Player;
+import model.Pokemon;
 import model.WeatherConditionEnum;
 import service.*;
 
 import javax.xml.transform.Source;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -13,6 +16,7 @@ public class Main {
         WeatherService weatherService = new WeatherService();
         PlayerService playerService = new PlayerService();
         LoadService loadService = new LoadService();
+        BattleService battleService = new BattleService();
 
         // game starting
         boolean isStart = false;
@@ -25,75 +29,70 @@ public class Main {
         // choosing first player's character
         System.out.println("Player 1, choose a character! \n 1- Ash \n 2- Broke");
         String player1Character = scanner.next().toLowerCase();
-        Player player1 =playerService.choosePlayer("player1", player1Character);
+        Player player1 = playerService.choosePlayer("player1", player1Character);
 
 
         // choosing second player's character
         System.out.println("Player 2, choose a character! \n 1- Ash \n 2- Broke");
         String player2Character = scanner.next().toLowerCase();
-        Player player2 =playerService.choosePlayer("player2", player2Character);
+        Player player2 = playerService.choosePlayer("player2", player2Character);
 
 
         // choosing first player's pokemon
-        System.out.println("Player 1, choose a pokemon! \n 1- Pikachu \n 2- Squirrel \n 2- Balbausar \n 2- Charmender");
+        System.out.println("Player 1, choose a pokemon! \n 1- Pikachu \n 2- Squirrel \n 3- Balbausar \n 4- Charmender");
         String player1Pokemon = scanner.next().toLowerCase();
         characterService.choosePokemon(player1, player1Pokemon);
 
         // choosing second player's pokemon
-        System.out.println("Player 2, choose a pokemon! \n 1- Pikachu \n 2- Squirrel \n 2- Balbausar \n 2- Charmender");
+        System.out.println("Player 2, choose a pokemon! \n 1- Pikachu \n 2- Squirrel \n 3- Balbausar \n 4- Charmender");
         String player2Pokemon = scanner.next().toLowerCase();
         characterService.choosePokemon(player2, player2Pokemon);
 
-        // Starting the fight
-        System.out.println("Battle will start know !!!");
-        boolean battleFinish = false;
-        int player1pokemonInitialDamage = player1.getCharacter().getPokemonList().get(0).getDamage();
-        int player2pokemonInitialDamage = player2.getCharacter().getPokemonList().get(0).getDamage();
+        // Starting the fight with random player.
+        System.out.println("Battle will start know !!! \n ROUND 1");
 
-        while(!battleFinish) {
-            //initial weather setted.
+        Player firstPlayer = playerService.randomStarter(player1, player2);
+        Player secondPlayer = new Player();
+        if (firstPlayer.equals(player1)) {
+            secondPlayer = player2;
+        } else {
+            secondPlayer = player1;
+        }
+        battleService.battleService(firstPlayer, secondPlayer, 0, 0);
 
-            WeatherConditionEnum currentWeather = weatherService.randomWeather();
-            System.out.println("Now the weather is " + currentWeather);
-            weatherService.effectThePowerOfPokemon(player1, currentWeather);
-            weatherService.effectThePowerOfPokemon(player2, currentWeather);
-
-            // 1. round attack move performed.
-            System.out.println(player1.getName() + "Make your attack move!" + "\n To make regular attack press 0 " +
-                    "\n To make PokeSpecialAttack press 1  " +
-                    "\n To make CharSpecialAttack press 2" + "\n To make both press 3");
-            int firstAttackMove = scanner.nextInt();
-            gameService.makeAttack(player1, player2, firstAttackMove);
-            System.out.println(player2);
-
-            System.out.println(player2.getName() + "Make your attack move!" + "\n To make regular attack press 0 " +
-                    "\n To make PokeSpecialAttack press 1  " +
-                    "\n To make CharSpecialAttack press 2" + "\n To make both press 3");
-            int secondAttackMove = scanner.nextInt();
-            gameService.makeAttack(player2, player1, secondAttackMove);
-            System.out.println(player1);
-
-            // is battle finished. Check the health bars.
-            if (player1.getCharacter().getPokemonList().get(0).getHealth() <= 0) {
-                player1.setWinner(false);
-                player2.setWinner(true);
-                System.out.println(player1.getName() +  " is the winner");
-                battleFinish = true;
-            } else if  (player2.getCharacter().getPokemonList().get(0).getHealth() <= 0){
-                player1.setWinner(true);
-                player2.setWinner(false);
-                System.out.println(player2.getName() +  " is the winner");
-                battleFinish = true;
-            } else {
-                System.out.println(player1.getName() + "health is : " + player1.getCharacter().getPokemonList().get(0).getHealth());
-                System.out.println(player2.getName() + "health is : " + player2.getCharacter().getPokemonList().get(0).getHealth());
-
-                battleFinish = false;
-            }
-
+        //round 2 starting.The winner of the first round will start first in this round. From now on, they will be
+        // called by looser and winner from first round.
+        Player winnerPlayer = new Player();
+        Player looserPlayer = new Player();
+        System.out.println("ROUND 2");
+        if (player1.isWinner() == true) {
+            winnerPlayer = player1;
+            looserPlayer = player2;
+        } else {
+            winnerPlayer = player2;
+            looserPlayer = player1;
         }
 
+        // change pokemons of the players.
+        looserPlayer.getCharacter().getPokemonList().get(0).setHealth(500);
+        winnerPlayer.getCharacter().getPokemonList().add(looserPlayer.getCharacter().getPokemonList().get(0));
+        ArrayList<Pokemon> looserPlayerPokemonList = new ArrayList<>();
+        looserPlayerPokemonList.add(loadService.loadPokemons().get(3));
+        looserPlayer.getCharacter().setPokemonList(looserPlayerPokemonList);
+
+        //battle service called for attack movements.
+        battleService.battleService(winnerPlayer, looserPlayer, 0, 0);
+        if (looserPlayer.getCharacter().getPokemonList().get(0).getHealth() <= 0) {
+            System.out.println(winnerPlayer.getName() + " is the winner!!!");
+        } else if (winnerPlayer.getCharacter().getPokemonList().get(0).getHealth() <= 0) {
+            battleService.battleService(winnerPlayer, looserPlayer, 1, 0);
+            if (looserPlayer.getCharacter().getPokemonList().get(0).getHealth() <= 0) {
+                System.out.println(winnerPlayer.getName() + " is the winner!!!");
+            } else {
+                System.out.println(looserPlayer.getName() + " is the winner!!!");
+            }
 
 
+        }
     }
 }

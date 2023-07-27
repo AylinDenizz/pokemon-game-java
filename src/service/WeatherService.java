@@ -37,7 +37,7 @@ public class WeatherService {
         } else if (currentWeather == WeatherConditionEnum.SUNNY) {
             System.out.println("Weather daily sunshine. All pokemon retained their strength.");
         } else {
-            System.out.println("wheather is " + currentWeather.name() + pokemon.getName() + " retained his strength.");
+            System.out.println("wheather is " + currentWeather.name() + " "+ pokemon.getName() + " retained his strength.");
         }
     }
 }

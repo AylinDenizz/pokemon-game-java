@@ -57,6 +57,29 @@ public class GameService {
         }
     }
 
+    // is battle finished. Check the health bars.
+    public boolean isBattleFinished(Player firstPlayer, Player secondPlayer) {
+        boolean battleFinish = false;
+
+        if (secondPlayer.getCharacter().getPokemonList().get(0).getHealth() <= 0) {
+            firstPlayer.setWinner(true);
+            secondPlayer.setWinner(false);
+            System.out.println(firstPlayer.getName() +  " is the winner of the first round");
+            battleFinish = true;
+        } else if  (firstPlayer.getCharacter().getPokemonList().get(0).getHealth() <= 0){
+            firstPlayer.setWinner(false);
+            secondPlayer.setWinner(true);
+            System.out.println(secondPlayer.getName() +  " is the winner of the first round");
+            battleFinish = true;
+        } else {
+            System.out.println(firstPlayer.getName() + "health is : " + firstPlayer.getCharacter().getPokemonList().get(0).getHealth());
+            System.out.println(secondPlayer.getName() + "health is : " + secondPlayer.getCharacter().getPokemonList().get(0).getHealth());
+
+            battleFinish = false;
+        }
+        return  battleFinish;
+    }
+
 
 
 }
