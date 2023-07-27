@@ -4,7 +4,7 @@ Pokemon-Game-Java is a fun and interactive text-based Pokemon game realized in J
 
 ## Features
 
-###Game Mechanics
+### Game Mechanics
 At the start, players need to press any key to begin the game.
 Players then choose their characters from a list of available characters (e.g., Ash or Brock) for player 1 and player 2.
 Next, each player selects a Pokemon for their character from a list of available Pokemon (e.g., Pikachu, Squirtle, Bulbasaur, or Charmander).
@@ -13,14 +13,14 @@ During each round, players choose an attack move for their Pokemon. They can per
 The game calculates the damage dealt to the opponent's Pokemon based on the chosen moves and their effectiveness against the opponent's Pokemon type.
 The battle continues in rounds until one of the player's Pokemon runs out of health points (HP).
 The game then declares the winner based on which player's Pokemon has more remaining HP.
-###Weather Conditions
+### Weather Conditions
 The game features various weather conditions (e.g., Sunny, Rainy, Foggy) that impact the power of Pokemon moves during battles.
 The current weather condition is randomly chosen at the start of each round.
 Different Pokemon types may receive a boost or penalty in their move power based on the weather condition.
 ###Contributing
 Contributions to this project are welcome! If you have any bug fixes, improvements, or new features to add, feel free to open a pull request.
 
-###Disclaimer
+### Disclaimer
 This game is developed solely for educational and personal use. It is based on the popular Pokemon franchise, which is owned by Nintendo, Game Freak, and The Pokemon Company. The creators of this game do not claim ownership of any of the original Pokemon intellectual property.
 
 Enjoy the Pokemon battle experience and have fun playing the game!
