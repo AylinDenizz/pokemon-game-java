@@ -4,15 +4,26 @@ Pokemon-Game-Java is a fun and interactive text-based Pokemon game realized in J
 
 ## Features
 
-1. Collecting Pokemon: Players can encounter and catch different types of Pokemon while exploring the virtual world.
-2. Pokemon Training: You can train captured Pokemon by leveling them up and unlock new abilities.
-3. Turn-Based Battles: Engage in exciting turn-based battles with other Pokemon trainers and wild Pokemon.
-4. Pokemon Types and Weaknesses: Implement a system of element types and interactions (eg water vs fire) to add strategic depth to battles.
-5. Items and Potions: Offer players various items and potions to heal and strengthen their Pokemon during battles and adventures.
-6. Save and Load: Allow players to save their progress and load their game state.
-7. Player Evolution: Implement a level system for player characters, allowing them to become stronger Pokemon trainers.
-8. Random Events: Add random events to the game such as rare Pokemon encounters or challenges.
-9. ASCII Art: Add representations of ASCII art as a nice touch in your Pokemon's command line interface.
+###Game Mechanics
+At the start, players need to press any key to begin the game.
+Players then choose their characters from a list of available characters (e.g., Ash or Brock) for player 1 and player 2.
+Next, each player selects a Pokemon for their character from a list of available Pokemon (e.g., Pikachu, Squirtle, Bulbasaur, or Charmander).
+The battle begins with a random weather condition that affects the power of Pokemon moves.
+During each round, players choose an attack move for their Pokemon. They can perform a regular attack, a PokeSpecialAttack, a CharSpecialAttack, or both.
+The game calculates the damage dealt to the opponent's Pokemon based on the chosen moves and their effectiveness against the opponent's Pokemon type.
+The battle continues in rounds until one of the player's Pokemon runs out of health points (HP).
+The game then declares the winner based on which player's Pokemon has more remaining HP.
+###Weather Conditions
+The game features various weather conditions (e.g., Sunny, Rainy, Foggy) that impact the power of Pokemon moves during battles.
+The current weather condition is randomly chosen at the start of each round.
+Different Pokemon types may receive a boost or penalty in their move power based on the weather condition.
+###Contributing
+Contributions to this project are welcome! If you have any bug fixes, improvements, or new features to add, feel free to open a pull request.
+
+###Disclaimer
+This game is developed solely for educational and personal use. It is based on the popular Pokemon franchise, which is owned by Nintendo, Game Freak, and The Pokemon Company. The creators of this game do not claim ownership of any of the original Pokemon intellectual property.
+
+Enjoy the Pokemon battle experience and have fun playing the game!
 
 ## Beginning
 
