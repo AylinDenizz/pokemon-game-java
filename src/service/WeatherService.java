@@ -20,8 +20,8 @@ public class WeatherService {
         return weathers.get(index);
     }
 
-    public void effectThePowerOfPokemon(Player player, WeatherConditionEnum currentWeather) {
-        Pokemon pokemon = player.getCharacter().getPokemonList().get(0);
+    public void effectThePowerOfPokemon(Player player, WeatherConditionEnum currentWeather, int indexOfPlayer) {
+        Pokemon pokemon = player.getCharacter().getPokemonList().get(indexOfPlayer);
         if (currentWeather.equals( WeatherConditionEnum.HOT) && pokemon.getName().equals("squirrel")) {
             pokemon.setDamage((pokemon.getDamage()) * 8 / 10);
             System.out.println("Squirtle loose his power due to evaporation of water.New Damage=" + pokemon.getDamage());

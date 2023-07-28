@@ -25,17 +25,17 @@ public class BattleService {
 
             WeatherConditionEnum currentWeather = weatherService.randomWeather();
             System.out.println("Now the weather is " + currentWeather);
-            weatherService.effectThePowerOfPokemon(firstPlayer, currentWeather);
-            weatherService.effectThePowerOfPokemon(secondPlayer, currentWeather);
+            weatherService.effectThePowerOfPokemon(firstPlayer, currentWeather,indexOfPokemon1);
+            weatherService.effectThePowerOfPokemon(secondPlayer, currentWeather, indexOfPokemon2);
 
             // 1. round attack move performed.
             System.out.println(firstPlayer.getName() + " Make your attack move!" + "\n -To make regular attack press 0 " +
                     "\n -To make PokeSpecialAttack press 1  " +
                     "\n -To make CharSpecialAttack press 2" + "\n -To make both press 3");
             int firstAttackMove = scanner.nextInt();
-            gameService.makeAttack(firstPlayer, secondPlayer, firstAttackMove);
+            gameService.makeAttack(firstPlayer, secondPlayer, firstAttackMove, indexOfPokemon1,indexOfPokemon2);
             System.out.println(secondPlayer.getCharacter().getPokemonList().get(indexOfPokemon2).getHealth());
-            battleFinish = gameService.isBattleFinished(firstPlayer, secondPlayer);
+            battleFinish = gameService.isBattleFinished(firstPlayer, secondPlayer, indexOfPokemon1, indexOfPokemon2);
             if (battleFinish == true) {
                 break;
             }
@@ -44,9 +44,9 @@ public class BattleService {
                     "\n -To make PokeSpecialAttack press 1  " +
                     "\n -To make CharSpecialAttack press 2" + "\n -To make both press 3");
             int secondAttackMove = scanner.nextInt();
-            gameService.makeAttack(secondPlayer, firstPlayer, secondAttackMove);
+            gameService.makeAttack(secondPlayer, firstPlayer, secondAttackMove ,indexOfPokemon2, indexOfPokemon1);
             System.out.println(firstPlayer.getCharacter().getPokemonList().get(indexOfPokemon1).getHealth());
-            battleFinish = gameService.isBattleFinished(firstPlayer, secondPlayer);
+            battleFinish = gameService.isBattleFinished(firstPlayer, secondPlayer, indexOfPokemon1,indexOfPokemon2);
             if (battleFinish == true) {
                 break;
             }
