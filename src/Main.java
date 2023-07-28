@@ -50,7 +50,6 @@ public class Main {
 
         // Starting the fight with random player.
         System.out.println("Battle will start know !!! \n ROUND 1");
-
         Player firstPlayer = playerService.randomStarter(player1, player2);
         Player secondPlayer = new Player();
         if (firstPlayer.equals(player1)) {
@@ -91,8 +90,6 @@ public class Main {
             } else {
                 System.out.println(looserPlayer.getName() + " is the winner!!!");
             }
-
-
         }
     }
 }
